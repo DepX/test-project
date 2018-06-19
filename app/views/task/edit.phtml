@@ -1,0 +1,86 @@
+<h1 class="mt-5">Edit task</h1>
+
+<div class="row mt-3">
+    <div class="col">
+        <a href="<?php echo $this->url->get(['for' => 'home']); ?>" class="btn btn-primary">Return to list</a>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col">
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Name *</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="user_name" placeholder="" value="<?php echo $this->taskModel->user_name; ?>" required="">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Email *</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-envelope-open"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="email" placeholder="" value="<?php echo $this->taskModel->email; ?>" required="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Created at</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-clock"></i>
+                            </span>
+                        </div>
+                        <input type="date" class="form-control" name="created_at[date]" placeholder="" value="<?php echo $this->taskModel->getCreatedAt()->format('Y-m-d'); ?>" required="">
+                        <input type="time" class="form-control" name="created_at[time]" placeholder="" value="<?php echo $this->taskModel->getCreatedAt()->format('H:i'); ?>" required="">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label></label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="status" name="status" <?php if ($this->taskModel->status == 1) : ?> checked<?php endif; ?>>
+                        <label class="custom-control-label" for="status">Status</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Image</label>
+                    <input type="file" class="form-control" name="image" accept=".jpg, .jpeg, .png, .gif">
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row">
+                <div class="col">
+                    <label>Message *</label>
+                    <textarea name="message" class="form-control" required=""><?php echo $this->taskModel->message; ?></textarea>
+                </div>
+            </div>
+
+            <?php if ($this->formErrorMessage) : ?>
+                <div class="alert alert-danger">
+                    <?php echo $this->formErrorMessage; ?>
+                </div>
+            <?php endif; ?>
+
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+        </form>
+
+    </div>
+</div>

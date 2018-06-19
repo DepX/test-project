@@ -1,0 +1,9 @@
+{
+    "name": "simple-mvc",
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "require": {
+        "claviska/simpleimage": "^3.3"
+    }
+}

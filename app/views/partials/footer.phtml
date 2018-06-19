@@ -1,0 +1,6 @@
+<footer class="footer">
+    <div class="status-code status-code-<?php echo (floor($this->response->getStatusCode() / 100)) * 100; ?>">
+        <?php echo $this->response->getStatusCode(); ?>
+        <?php echo $this->response->getStatusMessage(); ?>
+    </div>
+</footer>

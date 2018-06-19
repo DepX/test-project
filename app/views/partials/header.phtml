@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md bg-white border-bottom box-shadow">
+    <a class="navbar-brand" href="<?php echo $this->url->get(['for' => 'home']); ?>">Project name</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $this->url->get(['for' => 'home']); ?>">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/404">404</a>
+            </li>
+            <?php if ($this->security->getUser()) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $this->url->get(['for' => 'profile-index']); ?>">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $this->url->get(['for' => 'security-logout']); ?>">Logout</a>
+                </li>
+            <?php else : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo $this->url->get(['for' => 'security-login']); ?>">Sign in</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+
+    <?php if ($this->security->getUser()) : ?>
+        Welcome <?php echo $this->security->getUser()->name; ?>
+    <?php endif; ?>
+</nav>

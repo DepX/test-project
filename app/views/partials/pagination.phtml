@@ -1,0 +1,38 @@
+<?php if ($this->total_pages > 1) : ?>
+    <nav class="row">
+        <ul class="col pagination">
+            <?php if ($this->current_page == 1) : ?>
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            <?php else : ?>
+                <li class="page-item"><a class="page-link" href="<?php echo $this->getDi()->getService('url')->setParameter('p', ($this->current_page - 1)); ?>">Previous</a></li>
+            <?php endif; ?>
+
+            <?php foreach (range(1, $this->total_pages) as $numberPage) : ?>
+                <?php if (
+                ($this->current_page < 4 && $numberPage < 6) ||
+                ($this->current_page + 3 > $this->total_pages && $numberPage + 5 > $this->total_pages) ||
+                ($this->total_pages > $this->current_page + 2 && $this->current_page > 3 && $numberPage > $this->current_page - 3 && $numberPage < $this->current_page + 3)
+                ) : ?>
+                    <?php if ($this->current_page == $numberPage) : ?>
+                        <li class="page-item active"><span class="page-link"><?php echo $numberPage; ?><span class="sr-only">(current)</span></span></li>
+                    <?php else : ?>
+                        <li class="page-item"><a class="page-link" href="<?php echo $this->getDi()->getService('url')->setParameter('p', $numberPage); ?>"><?php echo $numberPage; ?></a></li>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+            <?php if ($this->current_page == $this->total_pages) : ?>
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            <?php else : ?>
+                <li class="page-item"><a class="page-link" href="<?php echo $this->getDi()->getService('url')->setParameter('p', ($this->current_page + 1)); ?>">Next</a></li>
+            <?php endif; ?>
+        </ul>
+
+        <div class="col-2 justify-content-end">
+            Pages <?php echo $this->current_page; ?> of <?php echo $this->total_pages; ?>
+        </div>
+        <div class="col-2 justify-content-end">
+            Results <?php echo $this->current_page * $this->maxResult; ?> of <?php echo $this->total_count; ?>
+        </div>
+    </nav>
+<?php endif; ?>

@@ -1,0 +1,83 @@
+<h1 class="mt-5">Tasks list</h1>
+
+<div class="row mt-3">
+    <div class="col">
+        <a href="<?php echo $this->url->get(['for' => 'task-add']); ?>" class="btn btn-primary">Add new task</a>
+    </div>
+</div>
+
+<table class="table mt-3">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">
+            <a href="<?php echo $this->url->setParameter('order', ($this->order == 'name:asc') ? 'name:desc' : 'name:asc'); ?>">
+                User name
+                <?php if ($this->order == 'name:asc') : ?>
+                    <i class="fa fa-caret-up"></i>
+                <?php endif; ?>
+                <?php if ($this->order == 'name:desc') : ?>
+                    <i class="fa fa-caret-down"></i>
+                <?php endif; ?>
+            </a>
+        </th>
+        <th scope="col">
+            <a href="<?php echo $this->url->setParameter('order', ($this->order == 'email:asc') ? 'email:desc' : 'email:asc'); ?>">
+                Email
+                <?php if ($this->order == 'email:asc') : ?>
+                    <i class="fa fa-caret-up"></i>
+                <?php endif; ?>
+                <?php if ($this->order == 'email:desc') : ?>
+                    <i class="fa fa-caret-down"></i>
+                <?php endif; ?>
+            </a>
+        </th>
+        <th scope="col">
+            <a href="<?php echo $this->url->setParameter('order', ($this->order == 'status:asc') ? 'status:desc' : 'status:asc'); ?>">
+                Status
+                <?php if ($this->order == 'status:asc') : ?>
+                    <i class="fa fa-caret-up"></i>
+                <?php endif; ?>
+                <?php if ($this->order == 'status:desc') : ?>
+                    <i class="fa fa-caret-down"></i>
+                <?php endif; ?>
+            </a>
+        </th>
+        <th scope="col">Created at</th>
+        <?php if ($this->security->getUser()) : ?>
+            <th scope="col"></th>
+        <?php endif; ?>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->navigation['items'] as $task) : ?>
+        <tr>
+            <th scope="row"><?php echo $task->id; ?></th>
+            <td><a href="<?php echo $this->url->get(['for' => 'task', 'id' => $task->id]); ?>"><?php echo $task->user_name; ?></a></td>
+            <td><?php echo $task->email; ?></td>
+            <?php if ($task->status) : ?>
+                <td class="task-status-1">
+                    <i class="fa fa-check"></i>
+                </td>
+            <?php else : ?>
+                <td class="task-status-0">
+                    <i class="fa fa-times"></i>
+                </td>
+            <?php endif; ?>
+            <td><?php echo $task->getCreatedAt()->format('d.m.Y \i\n H:i'); ?></td>
+            <?php if ($this->security->getUser()) : ?>
+                <td>
+                    <a href="<?php echo $this->url->get(['for' => 'task-edit', 'id' => $task->id]); ?>" class="btn btn-success btn-sm">
+                        <i class="fa fa-pencil-alt"></i>
+                    </a>
+                    <a href="<?php echo $this->url->get(['for' => 'task-delete', 'id' => $task->id]); ?>" class="btn btn-danger btn-sm">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            <?php endif; ?>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?php echo $this->navigation['navigation']; ?>
