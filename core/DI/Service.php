@@ -31,7 +31,7 @@ class Service
      */
     public function get($name)
     {
-        return (!empty($this->services[$name])) ? $this->services[$name]() : false;
+        return (!empty($this->services[$name])) ? $this->services[$name] : false;
     }
 
     /**

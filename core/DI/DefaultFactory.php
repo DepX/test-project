@@ -34,23 +34,6 @@ class DefaultFactory extends Di
      */
     public function setService($name, $definition)
     {
-        if (get_class($definition) != 'Closure') {
-            $definition = function () use ($definition) {
-                return $definition;
-            };
-        }
-
-        $func = $definition->bindTo(new \StdClass);
-        $func_class = $func();
-
-        // set di
-        if (method_exists($func_class,'setDi')) {
-            $func_class->setDi($this);
-            $definition_new = function () use ($func_class) {
-                return $func_class;
-            };
-            $definition = $definition_new;
-        }
         $this->service->set($name, $definition);
     }
 
@@ -62,7 +45,28 @@ class DefaultFactory extends Di
      */
     public function getService($name)
     {
-        return $this->service->get($name);
+        $service = $this->service->get($name);
+        if (!$service)
+            return false;
+
+        if (is_object($service)) {
+            if (get_class($service) != 'Closure') {
+                $service = function () use ($service) {
+                    return $service;
+                };
+            }
+
+            $func = $service->bindTo(new \StdClass);
+            $func_class = $func();
+
+            // set di
+            if (method_exists($func_class, 'setDi')) {
+                $func_class->setDi($this);
+            }
+            $service = $func_class;
+        }
+
+        return $service;
     }
 
     /**
