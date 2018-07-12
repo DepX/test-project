@@ -205,7 +205,7 @@ class QueryBuilder
 
                 $new_values = [];
                 foreach ($this->new_values as $key => $item) {
-                    $new_values[] = $key . '="' . $item . '"';
+                    $new_values[] = $key . '="' . htmlspecialchars($item) . '"';
                 }
                 $this->query .= 'SET ' . implode(', ', $new_values) . ' ';
                 $this->query .= $where;
