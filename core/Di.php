@@ -34,21 +34,4 @@ class Di
     {
         self::$default = $default;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getService()
-    {
-        return $this->service;
-    }
-
-    /**
-     * @param mixed $service
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-    }
-
 }
