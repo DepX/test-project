@@ -97,7 +97,7 @@ class Model implements InjectionInterface
         return $class::find([
             'conditions' => 'id = :id:',
             'bind' => [
-                'id' => $queryBuilder->getInsertId()
+                'id' => (!empty($parameters['id'])) ? $parameters['id'] : $queryBuilder->getInsertId()
             ]
         ])->getFirst();
     }
