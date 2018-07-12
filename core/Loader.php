@@ -6,6 +6,8 @@ class Loader
 {
     private $namespaces = [];
 
+    private $directories = [];
+
     private $di;
 
     private function loader($className)
@@ -36,6 +38,14 @@ class Loader
             }
             include_once $fileClass;
         }
+
+        // include files
+        foreach ($this->directories as $directory) {
+            foreach (glob($directory . '/*.php') as $filename)
+            {
+                include_once $filename;
+            }
+        }
     }
 
     private function changeSeparator($path){
@@ -48,7 +58,15 @@ class Loader
     }
 
     /**
-     * @param array $namespace
+     * @param array $directories
+     */
+    public function registerDirectories($directories)
+    {
+        $this->directories = $directories;
+    }
+
+    /**
+     * @param array $namespaces
      */
     public function registerNamespaces($namespaces)
     {
