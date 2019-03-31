@@ -5,6 +5,6 @@
     },
     "require": {
         "claviska/simpleimage": "^3.3",
-        "depx/mvc": "dev-master"
+        "depx/mvc": "~0.1"
     }
 }
