@@ -1,6 +1,6 @@
 <?php
 
-return new \Simple\Config([
+return new \SimpleMvc\Config([
     'database' => [
         'host'      => 'localhost',
         'username'  => 'root',

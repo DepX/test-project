@@ -2,7 +2,7 @@
 
 namespace Acme\Controller;
 
-use Simple\Mvc\Controller;
+use SimpleMvc\Mvc\Controller;
 
 /**
  * Main controller

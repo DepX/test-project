@@ -2,14 +2,14 @@
 
 namespace Acme\Service;
 
-use Simple\DI\InjectionInterface;
+use SimpleMvc\DI\InjectionInterface;
 
 class Paginator implements InjectionInterface
 {
     private $di;
 
     /**
-     * @param \Simple\DI\DefaultFactory $di
+     * @param \SimpleMvc\DI\DefaultFactory $di
      */
     public function setDi($di)
     {
@@ -17,7 +17,7 @@ class Paginator implements InjectionInterface
     }
 
     /**
-     * @return \Simple\DI\DefaultFactory
+     * @return \SimpleMvc\DI\DefaultFactory
      */
     public function getDi()
     {
@@ -25,7 +25,7 @@ class Paginator implements InjectionInterface
     }
 
     /**
-     * @param \Simple\Mvc\Model $query
+     * @param \SimpleMvc\Mvc\Model $query
      * @param $template
      * @param int $page
      * @param int $maxResult

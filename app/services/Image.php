@@ -2,12 +2,12 @@
 
 namespace Acme\Service;
 
-use claviska\SimpleImage;
-use Simple\Http\Request\File;
+use claviska\SimpleMvcImage;
+use SimpleMvc\Http\Request\File;
 
 /**
  * Class Image
- * @package Simple\Service
+ * @package SimpleMvc\Service
  */
 class Image
 {
@@ -17,7 +17,7 @@ class Image
     protected $imageModel;
 
     /**
-     * @param \Simple\Http\Request\File $file
+     * @param \SimpleMvc\Http\Request\File $file
      * @return array|bool
      */
     public function upload($file)
@@ -78,7 +78,7 @@ class Image
 
         if (($width || $height) && !file_exists(DIR_PUBLIC . $path_file) && file_exists(DIR_PUBLIC . $this->getWebDir() . 'original_' . $image->file)) {
 
-            $simpleImage = new SimpleImage();
+            $simpleImage = new SimpleMvcImage();
             $simpleImage->fromFile(DIR_PUBLIC . $this->getWebDir() . 'original_' . $image->file);
 
             if ($width && $height) {

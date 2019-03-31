@@ -2,7 +2,7 @@
 
 namespace Acme\Model;
 
-use Simple\Mvc\Model;
+use SimpleMvc\Mvc\Model;
 
 /**
  * Main model

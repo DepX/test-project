@@ -6,10 +6,9 @@ define('DIR_PUBLIC', DIR_ROOT . '/public');
 
 try {
     require DIR_ROOT . "/vendor/autoload.php";
-    require DIR_ROOT . '/core/Loader.php';
 
     // register namespaces
-    $loaderClass = new \Simple\Loader();
+    $loaderClass = new \SimpleMvc\Loader();
     $loaderClass->registerNamespaces([
         'Acme\Service'      => DIR_APP . '/services',
         'Acme\Controller'   => DIR_APP . '/controllers',
@@ -18,7 +17,7 @@ try {
     $loaderClass->register();
 
     // init dependency injection
-    $diClass = new \Simple\DI\DefaultFactory();
+    $diClass = new \SimpleMvc\DI\DefaultFactory();
 
     // init config
     $diClass->setService('config', function () {
@@ -27,7 +26,7 @@ try {
     });
 
     // init database
-    $diClass->setService('db', new \Simple\Mvc\Database());
+    $diClass->setService('db', new \SimpleMvc\Mvc\Database());
 
     // init routers
     $diClass->setService('router', function () {
@@ -36,18 +35,18 @@ try {
     });
 
     // init url
-    $diClass->setService('url', new \Simple\Mvc\Url());
+    $diClass->setService('url', new \SimpleMvc\Mvc\Url());
 
     // init view
     $diClass->setService('view', function () {
-        $view = new \Simple\Mvc\View();
+        $view = new \SimpleMvc\Mvc\View();
         $view->setBasePath(DIR_APP . '/views');
         return $view;
     });
 
     // init crypt
     $diClass->setService('crypt', function () {
-        $crypt = new \Simple\Crypt();
+        $crypt = new \SimpleMvc\Crypt();
         $crypt->setKey('&wW5kzMe$Kb#7&t?9axKA@Q$?JY-MB%=');
         return $crypt;
     });
@@ -59,7 +58,7 @@ try {
     $diClass->setService('paginator', new \Acme\Service\Paginator());
 
     // init app
-    $applicationClass = new \Simple\Mvc\Application($diClass);
+    $applicationClass = new \SimpleMvc\Mvc\Application($diClass);
     $applicationClass->load();
 } catch (\Exception $e) {
     echo 'Error code: ' . $e->getCode() . ', Message: ' . $e->getMessage();

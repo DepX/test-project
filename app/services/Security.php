@@ -4,8 +4,8 @@ namespace Acme\Service;
 
 use Acme\Model\User as UserModel;
 use Acme\Model\UserToken as UserTokenModel;
-use Simple\Di;
-use Simple\DI\InjectionInterface;
+use SimpleMvc\Di;
+use SimpleMvc\DI\InjectionInterface;
 
 class Security implements InjectionInterface
 {
@@ -22,7 +22,7 @@ class Security implements InjectionInterface
     }
 
     /**
-     * @param \Simple\DI\DefaultFactory $di
+     * @param \SimpleMvc\DI\DefaultFactory $di
      */
     public function setDi($di)
     {
@@ -30,7 +30,7 @@ class Security implements InjectionInterface
     }
 
     /**
-     * @return \Simple\DI\DefaultFactory
+     * @return \SimpleMvc\DI\DefaultFactory
      */
     public function getDi()
     {

@@ -4,6 +4,7 @@
         "vendor-dir": "vendor"
     },
     "require": {
-        "claviska/simpleimage": "^3.3"
+        "claviska/simpleimage": "^3.3",
+        "depx/mvc": "dev-master"
     }
 }

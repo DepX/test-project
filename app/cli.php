@@ -6,10 +6,9 @@ define('DIR_PUBLIC', DIR_ROOT . '/public');
 
 try {
     require DIR_ROOT . "/vendor/autoload.php";
-    require DIR_ROOT . '/core/Loader.php';
 
     // register namespaces
-    $loaderClass = new \Simple\Loader();
+    $loaderClass = new \SimpleMvc\Loader();
     $loaderClass->registerNamespaces([
         'Acme\Service'      => DIR_APP . '/services',
         'Acme\Model'        => DIR_APP . '/models'
@@ -20,7 +19,7 @@ try {
     $loaderClass->register();
 
     // init dependency injection
-    $diClass = new \Simple\DI\DefaultFactory();
+    $diClass = new \SimpleMvc\DI\DefaultFactory();
 
     // init config
     $diClass->setService('config', function () {
@@ -29,10 +28,10 @@ try {
     });
 
     // init database
-    $diClass->setService('db', new \Simple\Mvc\Database());
+    $diClass->setService('db', new \SimpleMvc\Mvc\Database());
 
     // init cli
-    $console = new \Simple\Cli\Console();
+    $console = new \SimpleMvc\Cli\Console();
     $console->setDi($diClass);
     $console->setArguments($argv);
     $console->load();

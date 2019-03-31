@@ -2,7 +2,7 @@
 
 use Acme\Model\Task as TaskModel;
 
-class UsersTask extends \Simple\Cli\Task
+class UsersTask extends \SimpleMvc\Cli\Task
 {
     /**
      * php app\cli.php users

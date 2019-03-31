@@ -1,6 +1,6 @@
 <?php
 
-$routerClass = new \Simple\Mvc\Router(true);
+$routerClass = new \SimpleMvc\Mvc\Router(true);
 $routerClass->setDefaultNamespace('Acme\Controller');
 
 /*** index ***/
