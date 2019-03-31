@@ -231,15 +231,4 @@ class QueryBuilder
 
         return $query;
     }
-
-    /**
-     * Get last insert id
-     *
-     * @return mixed
-     */
-    public function getInsertId()
-    {
-        $di = Di::getDefault();
-        return $di->getService('db')->getInsertId();
-    }
 }

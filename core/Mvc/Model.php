@@ -48,6 +48,22 @@ class Model implements InjectionInterface
     }
 
     /**
+     * @param Database $db
+     */
+    public function setDb($db)
+    {
+        $this->db = $db;
+    }
+
+    /**
+     * @return Database
+     */
+    public function getDb()
+    {
+        return $this->db;
+    }
+
+    /**
      * Ger all results
      *
      * @param $parameters
@@ -97,7 +113,7 @@ class Model implements InjectionInterface
         return $class::find([
             'conditions' => 'id = :id:',
             'bind' => [
-                'id' => (!empty($parameters['id'])) ? $parameters['id'] : $queryBuilder->getInsertId()
+                'id' => (!empty($parameters['id'])) ? $parameters['id'] : $class->getDb()->getInsertId()
             ]
         ])->getFirst();
     }
